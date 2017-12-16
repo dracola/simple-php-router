@@ -4,7 +4,7 @@ namespace Pecee\Http\Input;
 
 use Pecee\Http\Request;
 
-class Input
+class InputHandler
 {
     /**
      * @var array

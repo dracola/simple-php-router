@@ -1,8 +1,6 @@
 # Simple PHP router
 Simple, fast and yet powerful PHP router that is easy to get integrated and in any project. Heavily inspired by the way Laravel handles routing, with both simplicity and expandability in mind.
 
-**Note: this documentation is currently work-in-progress. Feel free to contribute.**
-
 ### Notes
 
 The goal of this project is to create a router that is more or less 100% compatible with the Laravel documentation, while remaining as simple as possible, and as easy to integrate and change without compromising either speed or complexity. Being lightweight is the #1 priority.
@@ -341,10 +339,10 @@ function request()
 function input($index = null, $defaultValue = null, $methods = null)
 {
     if ($index !== null) {
-        return request()->getInput()->get($index, $defaultValue, $methods);
+        return request()->getInputHandler()->get($index, $defaultValue, $methods);
     }
 
-    return request()->getInput();
+    return request()->getInputHandler();
 }
 
 function redirect($url, $code = null)

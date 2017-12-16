@@ -2,7 +2,7 @@
 
 namespace Pecee\Http;
 
-use Pecee\Http\Input\Input;
+use Pecee\Http\Input\InputHandler;
 use Pecee\SimpleRouter\Route\ILoadableRoute;
 use Pecee\SimpleRouter\Route\RouteUrl;
 use Pecee\SimpleRouter\SimpleRouter;
@@ -14,7 +14,7 @@ class Request
     protected $host;
     protected $uri;
     protected $method;
-    protected $input;
+    protected $inputHandler;
 
     /**
      * @var ILoadableRoute|null
@@ -35,8 +35,8 @@ class Request
         // Check if special IIS header exist, otherwise use default.
         $this->setUri(new Uri($this->getHeader('unencoded-url', $this->getHeader('request-uri'))));
 
-        $this->input = new Input($this);
-        $this->method = strtolower($this->input->get('_method', $this->getHeader('request-method'), 'post'));
+        $this->inputHandler = new InputHandler($this);
+        $this->method = strtolower($this->inputHandler->get('_method', $this->getHeader('request-method'), 'post'));
     }
 
     protected function parseHeaders()
@@ -167,11 +167,11 @@ class Request
 
     /**
      * Get input class
-     * @return Input
+     * @return InputHandler
      */
-    public function getInput()
+    public function getInputHandler()
     {
-        return $this->input;
+        return $this->inputHandler;
     }
 
     /**

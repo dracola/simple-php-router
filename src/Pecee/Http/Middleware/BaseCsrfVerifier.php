@@ -63,7 +63,7 @@ class BaseCsrfVerifier implements IMiddleware
 
         if ($this->skip($request) === false && in_array($request->getMethod(), ['post', 'put', 'delete'], false) === true) {
 
-            $token = $request->getInput()->get(static::POST_KEY, null, 'post');
+            $token = $request->getInputHandler()->get(static::POST_KEY, null, 'post');
 
             // If the token is not posted, check headers for valid x-csrf-token
             if ($token === null) {
